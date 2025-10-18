@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimSignal Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            margin-bottom: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+
+        .contact-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .contact-description {
+            color: #86868b;
+            font-size: 17px;
+            margin-bottom: 24px;
+        }
+
+        .email-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .email-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .response-time {
+            color: #86868b;
+            font-size: 15px;
+            margin-top: 16px;
+        }
+
+        .faq-section {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .faq-header p {
+            color: #86868b;
+            font-size: 17px;
+        }
+
+        .faq-item {
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e5e5e7;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .faq-question::before {
+            content: "Q";
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .faq-answer {
+            color: #515154;
+            font-size: 17px;
+            line-height: 1.7;
+            margin-left: 48px;
+        }
+
+        .faq-answer ol, .faq-answer ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+            color: #515154;
+        }
+
+        .help-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 32px;
+            text-align: center;
+            animation: fadeInUp 0.6s ease 0.6s both;
+        }
+
+        .help-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+        }
+
+        .help-card p {
+            color: #515154;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .help-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .help-card a:hover {
+            text-decoration: underline;
+        }
+
+        .help-list {
+            text-align: left;
+            max-width: 500px;
+            margin: 20px auto 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 0.6s ease 0.8s both;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 16px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .contact-card, .faq-section {
+                padding: 32px 24px;
+            }
+
+            .faq-header h2 {
+                font-size: 28px;
+            }
+
+            .faq-question {
+                font-size: 18px;
+            }
+
+            .faq-answer {
+                font-size: 16px;
+                margin-left: 0;
+            }
+
+            .faq-question::before {
+                margin-right: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">📱</div>
+            <h1>SimSignal Support</h1>
+            <p class="subtitle">We're here to help you stay connected</p>
+        </div>
+
+        <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <h2 class="contact-title">Get in Touch</h2>
+            <p class="contact-description">Have a question? Our support team is ready to assist you.</p>
+            <a href="mailto:support@simsignal.com" class="email-button">support@simsignal.com</a>
+            <p class="response-time">⏱️ We typically respond within 24 hours</p>
+        </div>
+
+        <div class="faq-section">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common questions</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I install my eSIM?</div>
+                <div class="faq-answer">
+                    After purchasing an eSIM package:
+                    <ol>
+                        <li>Go to "My eSIMs" tab</li>
+                        <li>Tap on your purchased eSIM</li>
+                        <li>Tap the "Install eSIM" button</li>
+                        <li>Your eSIM will be installed instantly - no QR code needed!</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">When does my eSIM activate?</div>
+                <div class="faq-answer">
+                    Your eSIM data plan begins when you first connect to a mobile network in your destination country. The validity period starts from that moment, not from the time of purchase.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I get a refund?</div>
+                <div class="faq-answer">
+                    Yes! If you haven't used any data from your eSIM package, you can request an instant refund through the app. Go to "My eSIMs" and select the unused package to request a refund.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I check my data usage?</div>
+                <div class="faq-answer">
+                    Open the app and go to "My eSIMs". Select your active eSIM to see real-time data usage, remaining data, and expiration date. We make tracking your usage simple and transparent.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is my phone compatible with eSIM?</div>
+                <div class="faq-answer">
+                    eSIM is supported on:
+                    <ul>
+                        <li>iPhone XS, XR, and newer models</li>
+                        <li>iPad Pro (2018 and later), iPad Air (2019 and later), iPad mini (2019 and later)</li>
+                        <li>Most modern Android devices (check your device settings)</li>
+                    </ul>
+                    To verify: Go to Settings → Cellular/Mobile Data → look for "Add eSIM" or "Add Cellular Plan" option.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I use my regular SIM and eSIM at the same time?</div>
+                <div class="faq-answer">
+                    Yes! Your phone supports dual SIM functionality. You can keep your home number active for calls and texts while using the eSIM for data. This way, you stay reachable without expensive roaming charges.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What if I run out of data?</div>
+                <div class="faq-answer">
+                    You can purchase a top-up package or a new eSIM plan directly in the app. Installation is instant, so you'll be back online in seconds!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Which countries do you support?</div>
+                <div class="faq-answer">
+                    SimSignal offers eSIM coverage in 168+ destinations worldwide. Browse available countries in the "Store" tab of the app to find the perfect plan for your destination.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">My eSIM isn't connecting. What should I do?</div>
+                <div class="faq-answer">
+                    Try these troubleshooting steps:
+                    <ol>
+                        <li>Turn on "Data Roaming" for your eSIM in Settings</li>
+                        <li>Turn Airplane Mode on, wait 10 seconds, then turn it off</li>
+                        <li>Make sure your eSIM line is selected for Cellular Data</li>
+                        <li>Restart your device</li>
+                    </ol>
+                    If issues persist, contact us at support@simsignal.com with your order details.
+                </div>
+            </div>
+        </div>
+
+        <div class="help-card">
+            <h3>Still Need Help?</h3>
+            <p>Can't find the answer you're looking for? Our support team is ready to help!</p>
+            <p>Email us at <a href="mailto:support@simsignal.com">support@simsignal.com</a> with:</p>
+            <ul class="help-list">
+                <li>Your order number or ICCID (found in "My eSIMs")</li>
+                <li>A detailed description of your issue</li>
+                <li>Screenshots if applicable</li>
+                <li>Your device model and iOS/Android version</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 SimSignal. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
